@@ -77,3 +77,19 @@ FROM tb_data3
 GROUP BY SUBSTR(detailtime, 12, 8)
 ORDER BY SUBSTR(detailtime, 12, 8) ASC;
 
+CREATE TABLE tb_data_241023 (
+      sleep_g VARCHAR2(100)
+     ,detailtime VARCHAR2(100)
+     ,datatime DATE DEFAULT SYSDATE
+);
+SELECT * FROM tb_data_241023
+WHERE SUBSTR(detailtime, 12, 8) < '07:00:00 ' 
+ORDER BY detailtime;
+
+
+
+
+
+select count(*)
+from tb_data_241023
+order by detailtime desc;
