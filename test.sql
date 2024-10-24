@@ -86,10 +86,20 @@ SELECT * FROM tb_data_241023
 WHERE SUBSTR(detailtime, 12, 8) < '07:00:00 ' 
 ORDER BY detailtime;
 
-
-
-
-
 select count(*)
 from tb_data_241023
 order by detailtime desc;
+
+
+SELECT SUBSTR(detailtime, 12, 8) AS sec
+      ,ROUND(AVG(REGEXP_REPLACE(sleep_g, '[^0-9.-]', ''))) as sleep
+FROM tb_data_241023
+WHERE SUBSTR(detailtime, 12, 8) < '07:00:00 ' 
+GROUP BY SUBSTR(detailtime, 12, 8)
+ORDER BY SUBSTR(detailtime, 12, 8) ASC;
+
+ SELECT SUBSTR(detailtime, 1, 10) AS day
+      ,ROUND(AVG(REGEXP_REPLACE(sleep_g, '[^0-9.-]', ''))) as sleep_day
+FROM tb_data_241023
+GROUP BY SUBSTR(detailtime, 1, 10)
+ORDER BY SUBSTR(detailtime, 1, 10) ASC;
